@@ -265,6 +265,16 @@ div#board::-webkit-scrollbar-thumb:hover,
     display: block;
 }
 
+@keyframes zoom-in {
+    from {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
 .modal-content {
     background-color: var(--foreground-default);
     height: 300px;
@@ -275,6 +285,7 @@ div#board::-webkit-scrollbar-thumb:hover,
     transform: translate(-50%, -50%);
     border-radius: 0.8rem;
     max-width: 600px;
+    animation: zoom-in .1s ease-in-out;
 }
 
 #close-modal-button {
