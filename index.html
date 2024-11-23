@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.mjs" type="module" defer></script>
+    <title>FlowBoard</title>
+</head>
+
+<body>
+    <header>
+        <p id="logo">FlowBoard</p>
+        <button id="theme-switch" class="light" title="Change theme" aria-label="Change color theme"></button>
+    </header>
+
+    <main>
+        <div id="board">
+            <button id="add-list">Add new list</button>
+        </div>
+    </main>
+
+    <div id="card-modal" class="modal">
+        <form id="card-form" class="modal-content">
+            <div id="modal-header">
+                <input id="card-title-input" type="text" name="title" placeholder="Enter card name"></input>
+                <button id="close-modal-button" type="button" aria-label="Close modal">&times;</button>
+            </div>
+            <div id="modal-body">
+                <div id="card-description-input-container">
+                    <label for="card-description-input">Description</label>
+                    <textarea name="description" id="card-description-input" placeholder="What you need to do?"></textarea>
+                </div v>
+            </div>
+        </div>
+      </div>
+</body>
+
+<template id="list-template">
+    <div class="list">
+        <div class="list-header">
+            <input class="list-title" spellcheck="false" placeholder="Enter list name"></input>
+            <button class="add-card-button" type="button" title="Add card" aria-label="Create new card in list"></button>
+        </div>
+        <div class="cards-container">
+
+        </div>
+    </div>
+</template>
+
+<template id="card-template">
+    <div class="card" draggable="true">
+        <p class="card-title"></p>
+        <p class="card-description"></p>
+    </div>
+</template>
+
+</html>

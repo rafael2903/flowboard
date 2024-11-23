@@ -1,0 +1,21 @@
+#board {
+    scroll-snap-type: x mandatory;
+}
+
+.list {
+    min-width: 100%;
+    width: 100%;
+}
+
+.modal-content {
+    background-color: var(--foreground-default);
+    height: unset;
+    width: unset;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transform: none;
+    border-radius: 0;
+}
