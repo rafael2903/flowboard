@@ -55,11 +55,11 @@ header {
 }
 
 #theme-switch::after {
-    mask-image: url('/assests/icons/light-mode.svg');
+    mask-image: url('../assests/icons/light-mode.svg');
 }
 
 #theme-switch::before {
-    mask-image: url('/assests/icons/dark-mode.svg');
+    mask-image: url('../assests/icons/dark-mode.svg');
 }
 
 #theme-switch.light::after {
@@ -161,7 +161,7 @@ button#add-list:hover {
 }
 
 .add-card-button {
-    background-image: url('/assests/icons/add.svg');
+    background-image: url('../assests/icons/add.svg');
     height: 2.4rem;
     width: 2.4rem;
     border: none;
