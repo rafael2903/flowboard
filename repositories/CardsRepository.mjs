@@ -1,3 +1,5 @@
+let idCounter = 10
+
 let cards = [
     {
         id: 1,
@@ -71,10 +73,19 @@ let cards = [
     }
 ];
 
-window.cards = cards
-
 
 export class CardsRepository {
+    create(data) {
+        cards.push(
+            {
+                ...data,
+                id: ++idCounter,
+            }
+        )
+
+        return cards.at(-1)
+    }
+
     find(id) {
         return cards.find(card => card.id === id)
     }

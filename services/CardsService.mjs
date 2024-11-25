@@ -3,6 +3,10 @@ export class CardsService {
         this.repository = cardsRepository
     }
 
+    create(data) {
+        return this.repository.create(data)
+    }
+
     find(id) {
         return this.repository.find(+id)
     }

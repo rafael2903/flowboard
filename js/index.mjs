@@ -2,7 +2,7 @@ import { CardsRepository } from "../repositories/CardsRepository.mjs"
 import { ListsRepository } from "../repositories/ListsRepository.mjs"
 import { CardsService } from "../services/CardsService.mjs"
 import { ListsService } from "../services/ListsService.mjs"
-import { openCard } from "./cardModal.mjs"
+import { openCard, openCreateCardModal } from "./cardModal.mjs"
 import "./boardScroll.mjs"
 import "./theme.mjs"
 
@@ -49,12 +49,28 @@ const addListListeners = (list) => {
     list.addEventListener("drop", handleDropInList);
 }
 
-const addCard = ({ title, description, id, listId }) => {
+const handleDropInCard = (event) => {
+    event.preventDefault();
+    event.stopPropagation()
+    const cardId = event.dataTransfer.getData("text");
+    const targetCardId = event.target.id
+    const listId = "list-" + cardsService.find(targetCardId).listId
+    moveCard(cardId, listId)
+}
+
+export const addCardListeners = (card) => {
+    card.addEventListener("dragstart", handleDragstart);
+    card.addEventListener("click", (event) => openCard(event.target.id));
+    card.addEventListener("drop", handleDropInCard);
+}
+
+export const addCard = ({ title, description, id, listId }) => {
     const card = document.getElementById('card-template').content.cloneNode(true)
     card.querySelector('.card-title').textContent = title
     card.querySelector('.card-description').textContent = description
     card.querySelector('.card').id = id
     document.querySelector(`#list-${listId} .cards-container`)?.appendChild(card)
+    addCardListeners(document.getElementById(id))
 }
 
 const updateListTitle = (id, event) => {
@@ -68,6 +84,7 @@ const addList = ({ title, id }) => {
     listTitle.value = title
     listTitle.addEventListener("change", event => updateListTitle(id, event))
     list.querySelector(".list").id = `list-${id}`
+    list.querySelector(".add-card-list").addEventListener("click", () => openCreateCardModal(id))
     addListListeners(list.querySelector(".cards-container"))
     document.getElementById("board")?.insertBefore(list, addListButton)
     return list
@@ -84,21 +101,3 @@ addListButton.addEventListener("click", createNewList)
 
 listsService.findAll().forEach(addList)
 cardsService.findAll().forEach(addCard)
-
-const cards = document.querySelectorAll(".card");
-
-const handleDropInCard = (event) => {
-    event.preventDefault();
-    event.stopPropagation()
-    const cardId = event.dataTransfer.getData("text");
-    const targetCardId = event.target.id
-    const listId = "list-" + cardsService.find(targetCardId).listId
-    moveCard(cardId, listId)
-}
-
-cards.forEach(card => {
-    card.addEventListener("dragstart", handleDragstart);
-    card.addEventListener("click", (event) => openCard(event.target.id));
-    card.addEventListener("drop", handleDropInCard);
-})
-

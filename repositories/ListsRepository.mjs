@@ -15,15 +15,13 @@ let lists = [
     },
 ]
 
-window.lists = lists
-
 
 export class ListsRepository {
     create(data) {
         lists.push(
             {
+                ...data,
                 id: ++idCounter,
-                title: data.title
             }
         )
 

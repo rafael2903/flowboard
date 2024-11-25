@@ -160,7 +160,7 @@ button#add-list:hover {
     box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.25);
 }
 
-.add-card-button {
+.add-card-list {
     background-image: url('../assests/icons/add.svg');
     height: 2.4rem;
     width: 2.4rem;
@@ -171,7 +171,7 @@ button#add-list:hover {
     padding: 8px;
 }
 
-.add-card-button:hover {
+.add-card-list:hover {
     background-color: var(--background-highlight);
 }
 
@@ -299,13 +299,13 @@ div#board::-webkit-scrollbar-thumb:hover,
     border: none;
     margin-right: 0.8rem;
     align-self: start;
+    cursor: pointer;
 }
 
 #close-modal-button:hover,
 #close-modal-button:focus {
     color: var(--icon-highlight);
     text-decoration: none;
-    cursor: pointer;
 }
 
 #card-modal .modal-content {
@@ -341,15 +341,18 @@ div#board::-webkit-scrollbar-thumb:hover,
     background-color: var(--input-background);
 }
 
-#modal-header {
+.modal-header {
     display: flex;
     justify-content: space-between;
     gap: 1.6rem;
 }
 
-#modal-body {
+.modal-body {
     height: 100%;
     padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
 }
 
 #card-description-input-container {
@@ -384,4 +387,30 @@ div#board::-webkit-scrollbar-thumb:hover,
 #card-description-input:focus {
     outline: none;
     border-color: var(--border-highlight);
+}
+
+#create-card-button {
+    width: fit-content;
+    padding: 0.8rem;
+    align-self: end;
+    cursor: pointer;
+    background: var(--foreground-default);
+    border-radius: 0.4rem;
+    border: 1px solid var(--border-default);
+}
+
+#create-card-button:hover {
+    background-color: var(--background-highlight);
+}
+
+form:has(:is(#card-title-input:invalid, #card-description-input:invalid)) #create-card-button {
+    opacity: 0.5;
+}
+
+form:has(:is(#card-title-input:invalid, #card-description-input:invalid)) #create-card-button:hover {
+    background-color: var(--foreground-default);
+}
+
+.hidden {
+    display: none;
 }
